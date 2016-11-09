@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <td (click)="mostrar()">TITLE
+        <span *ngIf="ascendente"> Asc</span>
+        <span *ngIf="descendente"> Desc</span>       
+      </td><td>DIRECTOR</td><td>YEAR</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pelicula of listaDePeliculas">
+      <td >{{pelicula.title}}</td><td>{{pelicula.director}}</td><td>{{pelicula.year}}</td>
+    </tr>
+  </tbody>
+</table>

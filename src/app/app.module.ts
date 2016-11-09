@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { TablaDatosComponent } from './tabla-datos/tabla-datos.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TablaDatosComponent
   ],
   imports: [
     BrowserModule,
@@ -15,6 +17,6 @@ import { AppComponent } from './app.component';
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,TablaDatosComponent]
 })
 export class AppModule { }
