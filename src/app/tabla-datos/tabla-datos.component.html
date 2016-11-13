@@ -1,10 +1,24 @@
 <table>
   <thead>
     <tr>
-      <td (click)="mostrar()">TITLE
-        <span *ngIf="ascendente"> Asc</span>
-        <span *ngIf="descendente"> Desc</span>       
-      </td><td>DIRECTOR</td><td>YEAR</td>
+      <td (click)="ordenar('title')" >TITLE
+        <span *ngIf="campo =='title'">
+          <span *ngIf="ascendente"> Asc</span>
+          <span *ngIf="descendente"> Desc</span>
+        </span>       
+      </td>
+      <td (click)="ordenar('director')">DIRECTOR
+        <span *ngIf="campo =='director'">
+          <span *ngIf="ascendente"> Asc</span>
+          <span *ngIf="descendente"> Desc</span>
+        </span> 
+      </td> 
+      <td (click)="ordenar('year')">YEAR
+        <span *ngIf="campo =='year'">
+          <span *ngIf="ascendente"> Asc</span>
+          <span *ngIf="descendente"> Desc</span>
+        </span> 
+      </td>  
     </tr>
   </thead>
   <tbody>

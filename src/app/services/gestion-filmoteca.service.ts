@@ -29,17 +29,17 @@ export class GestionFilmotecaService {
   deletePelicula(id: number){
       this.arrayOriginal.splice(id,1);
   }
-  ordenar(orden: string): Pelicula[]{
+  ordenar(orden: string,campo:string): Pelicula[]{
     if(orden == "asc"){
-      this.arrayOrdenado.sort(function(pelicula1,pelicula2){
-          if(pelicula1.title < pelicula2.title) return -1;
-          if(pelicula1.title > pelicula2.title) return 1
+      this.arrayOrdenado.sort((pelicula1,pelicula2)=>{
+          if(pelicula1[campo] < pelicula2[campo]) return -1;
+          if(pelicula1[campo] > pelicula2[campo]) return 1
           return 0;
-        });
+      });
     }else{
-      this.arrayOrdenado.sort(function(pelicula1,pelicula2){
-          if(pelicula1.title < pelicula2.title) return 1;
-          if(pelicula1.title > pelicula2.title) return -1
+      this.arrayOrdenado.sort((pelicula1,pelicula2)=>{
+          if(pelicula1[campo] < pelicula2[campo]) return 1;
+          if(pelicula1[campo] > pelicula2[campo]) return -1
           return 0;
       });
     }
