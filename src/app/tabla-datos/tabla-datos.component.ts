@@ -43,4 +43,7 @@ export class TablaDatosComponent implements OnInit {
       this.ascendente = false;
     }
   }
+  obtenerPelicula(pelicula: Pelicula){
+    console.log(pelicula);
+  }
 }

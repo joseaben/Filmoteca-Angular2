@@ -22,8 +22,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pelicula of listaDePeliculas">
-      <td >{{pelicula.title}}</td><td>{{pelicula.director}}</td><td>{{pelicula.year}}</td>
+    <tr *ngFor="let pelicula of listaDePeliculas" (click)="obtenerPelicula(pelicula)">
+      <td>{{pelicula.title}}</td><td>{{pelicula.director}}</td><td>{{pelicula.year}}</td>
     </tr>
   </tbody>
 </table>

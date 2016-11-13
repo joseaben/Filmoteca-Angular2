@@ -1,0 +1,20 @@
+<form #form="ngForm">
+  <label>Titulo :</label>
+  <input type="text" #title="ngModel" name="title" [(ngModel)]="pelicula.title" required/>
+  <br/>
+  <div [hidden]="title.valid || title.pristine">Titulo requerido</div>
+  <br/>
+  <label>Director :</label>
+  <input type="text" #director="ngModel" name="director" [(ngModel)]="pelicula.director" required/>
+  <br/>
+  <div [hidden]="director.valid || director.pristine">Director requerido</div>
+  <br/>
+  <label>Año de creación :</label>
+  <input type="text" #year="ngModel" name="year" [(ngModel)]="pelicula.year" value="pepe" required/>
+  <br/>
+  <div [hidden]="year.valid || year.pristine">Titulo requerido</div>
+  <br/>
+  <button type="submit" [disabled]="form.invalid || true"(click)="addFilm(form.value)">Añadir Pelicula</button>
+  <button type="submit" [disabled]="form.invalid"(click)="updateFilm(form.value)">modificar Pelicula</button>
+  <button type="submit" [disabled]="form.invalid"(click)="deleteFilm(form.value)">Borrar Pelicula</button>
+</form>

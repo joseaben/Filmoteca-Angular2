@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TablaDatosComponent } from './tabla-datos/tabla-datos.component';
+import { FormPeliculasComponent } from './form-peliculas/form-peliculas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TablaDatosComponent
+    TablaDatosComponent,
+    FormPeliculasComponent
   ],
   imports: [
     BrowserModule,
@@ -17,6 +19,6 @@ import { TablaDatosComponent } from './tabla-datos/tabla-datos.component';
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent,TablaDatosComponent]
+  bootstrap: [AppComponent,TablaDatosComponent,FormPeliculasComponent]
 })
 export class AppModule { }
