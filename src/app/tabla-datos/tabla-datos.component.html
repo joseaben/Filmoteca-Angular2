@@ -5,24 +5,24 @@
         <span *ngIf="campo =='title'">
           <span *ngIf="ascendente"> Asc</span>
           <span *ngIf="descendente"> Desc</span>
-        </span>       
+        </span>
       </td>
       <td (click)="ordenar('director')">DIRECTOR
         <span *ngIf="campo =='director'">
           <span *ngIf="ascendente"> Asc</span>
           <span *ngIf="descendente"> Desc</span>
-        </span> 
-      </td> 
+        </span>
+      </td>
       <td (click)="ordenar('year')">YEAR
         <span *ngIf="campo =='year'">
           <span *ngIf="ascendente"> Asc</span>
           <span *ngIf="descendente"> Desc</span>
-        </span> 
-      </td>  
+        </span>
+      </td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pelicula of listaDePeliculas" (click)="obtenerPelicula(pelicula)">
+    <tr *ngFor="let pelicula of listaDePeliculas" (click)="enviarNotificacion(pelicula)">
       <td>{{pelicula.title}}</td><td>{{pelicula.director}}</td><td>{{pelicula.year}}</td>
     </tr>
   </tbody>

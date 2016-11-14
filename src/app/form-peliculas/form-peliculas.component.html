@@ -14,7 +14,8 @@
   <br/>
   <div [hidden]="year.valid || year.pristine">Titulo requerido</div>
   <br/>
-  <button type="submit" [disabled]="form.invalid || true"(click)="addFilm(form.value)">Añadir Pelicula</button>
+  <button type="submit" [disabled]="form.invalid"(click)="addFilm(form.value)">Añadir Pelicula</button>
   <button type="submit" [disabled]="form.invalid"(click)="updateFilm(form.value)">modificar Pelicula</button>
   <button type="submit" [disabled]="form.invalid"(click)="deleteFilm(form.value)">Borrar Pelicula</button>
 </form>
+<app-tabla-datos [renderizar]="enviarRenderizado" (eventoEnviarPelicula)="peliculaRecibida($event)">;)</app-tabla-datos>

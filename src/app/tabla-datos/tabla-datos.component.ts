@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter,Input } from '@angular/core';
 import {GestionFilmotecaService} from '../services/gestion-filmoteca.service';
 import {Pelicula} from '../model/pelicula';
 @Component({
   selector: 'app-tabla-datos',
   templateUrl: './tabla-datos.component.html',
   styleUrls: ['./tabla-datos.component.css'],
+  outputs:['eventoEnviarPelicula'],
   providers: [GestionFilmotecaService]
+
 })
 export class TablaDatosComponent implements OnInit {
 
@@ -13,7 +15,10 @@ export class TablaDatosComponent implements OnInit {
   descendente: boolean;
   sinOrden: boolean;
   campo: string;
+  @Input() private renderizar: boolean;
+  private eventoEnviarPelicula: EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
   listaDePeliculas: Pelicula[];
+
 
   constructor(private gestionFilmoteca: GestionFilmotecaService){
     this.ascendente = false;
@@ -27,7 +32,8 @@ export class TablaDatosComponent implements OnInit {
   ngOnInit() {}
 
   ordenar(campoTabla: string):void{
-    this.campo = campoTabla; 
+    console.log(this.renderizar);
+    this.campo = campoTabla;
     if(this.descendente){
       this.listaDePeliculas =this.gestionFilmoteca.getPeliculas();
       this.descendente = false;
@@ -36,14 +42,14 @@ export class TablaDatosComponent implements OnInit {
       this.listaDePeliculas = this.gestionFilmoteca.ordenar("asc",campoTabla);
       this.ascendente = true;
       this.sinOrden = false;
-      
+
     }else if(this.ascendente){
       this.listaDePeliculas = this.gestionFilmoteca.ordenar("desc",campoTabla);
       this.descendente = true;
       this.ascendente = false;
     }
   }
-  obtenerPelicula(pelicula: Pelicula){
-    console.log(pelicula);
+  enviarNotificacion(pelicula: Pelicula){
+     this.eventoEnviarPelicula.emit(pelicula);
   }
 }

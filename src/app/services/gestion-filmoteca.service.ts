@@ -7,7 +7,7 @@ export class GestionFilmotecaService {
   private arrayOriginal;
   private arrayOrdenado;
 
-  constructor() { 
+  constructor() {
     this.arrayOriginal =  new Array<Pelicula>();
     this.arrayOrdenado =  new Array<Pelicula>();
     this.cargaArrayTest();
@@ -20,7 +20,7 @@ export class GestionFilmotecaService {
       return this.arrayOriginal[id];
   }
   addPelicula(pelicula: Pelicula){
-      pelicula.setId = this.arrayOriginal.length;
+      //pelicula.setId = this.arrayOriginal.length;
       this.arrayOriginal.push(pelicula);
   }
   updatePelicula(pelicula: Pelicula){
@@ -54,7 +54,7 @@ export class GestionFilmotecaService {
     this.arrayOrdenado = [{title:"Los vengadores",director:"jose",year:"2012"},
                       {title:"Averages 2",director:"jose",year:"2015"},
                       {title:"Fast and furius",director:"jose",year:"2015"},
-                      {title:"Wonder Woman",director:"jose",year:"2017"}];                  
+                      {title:"Wonder Woman",director:"jose",year:"2017"}];
   }
 
 
