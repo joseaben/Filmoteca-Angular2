@@ -2,9 +2,16 @@ export class Pelicula {
     private id: number;
     private title: string;
     private director: string;
-    private synopsis: string;
     private year: string;
 
+    constructor(id?: number,title?: string,director?: string, year?: string){
+        if(id && title && director && year ){
+            this.id = id;
+            this.title = title;
+            this.director = director;
+            this.year = year;
+        }
+    }
 
     get getId(): number{
         return this.id;
@@ -23,12 +30,6 @@ export class Pelicula {
     } 
     set setDirector(director: string){
         this.director = director;
-    }
-    get getSynopsis(): string{
-        return this.synopsis;
-    } 
-    set setSynopsis(synopsis: string){
-        this.synopsis = synopsis;
     }
     get getYear(): string{
         return this.year;

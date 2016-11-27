@@ -1,55 +1,42 @@
-import { Component, OnInit, EventEmitter,Input } from '@angular/core';
-import {GestionFilmotecaService} from '../services/gestion-filmoteca.service';
+import { Component, OnInit, EventEmitter} from '@angular/core';
 import {Pelicula} from '../model/pelicula';
 @Component({
   selector: 'app-tabla-datos',
   templateUrl: './tabla-datos.component.html',
   styleUrls: ['./tabla-datos.component.css'],
-  outputs:['eventoEnviarPelicula'],
-  providers: [GestionFilmotecaService]
-
+  inputs: ['peliculas'],
+  outputs: ['eventoEmitidoOrdenar','eventoEmitidoSeleccionar']
 })
 export class TablaDatosComponent implements OnInit {
 
-  ascendente: boolean;
-  descendente: boolean;
-  sinOrden: boolean;
-  campo: string;
-  @Input() private renderizar: boolean;
-  private eventoEnviarPelicula: EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
-  listaDePeliculas: Pelicula[];
+  private peliculas: Pelicula[];
+  private orden: string;
 
+  private eventoEmitidoOrdenar: EventEmitter<string[]> = new EventEmitter<string[]>();
+  private eventoEmitidoSeleccionar: EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
 
-  constructor(private gestionFilmoteca: GestionFilmotecaService){
-    this.ascendente = false;
-    this.descendente = false;
-    this.sinOrden = true;
-    this.campo = null;
-
-    this.listaDePeliculas = this.gestionFilmoteca.getPeliculas();
+  constructor(){
+    this.orden = "-1";
   }
-
   ngOnInit() {}
-
+  
   ordenar(campoTabla: string):void{
-    console.log(this.renderizar);
-    this.campo = campoTabla;
-    if(this.descendente){
-      this.listaDePeliculas =this.gestionFilmoteca.getPeliculas();
-      this.descendente = false;
-      this.sinOrden = true;
-    }else if(this.sinOrden){
-      this.listaDePeliculas = this.gestionFilmoteca.ordenar("asc",campoTabla);
-      this.ascendente = true;
-      this.sinOrden = false;
-
-    }else if(this.ascendente){
-      this.listaDePeliculas = this.gestionFilmoteca.ordenar("desc",campoTabla);
-      this.descendente = true;
-      this.ascendente = false;
+    if(this.orden.substring(1) != campoTabla){
+      this.orden = "-1";
+    }
+    if(this.orden.substring(0,2) == "-1"){
+      this.orden = "0" + campoTabla;
+      this.eventoEmitidoOrdenar.emit(["asc",campoTabla]);
+    }else if(this.orden.substring(0,1) == "0"){
+      this.orden = "1" + campoTabla;
+      this.eventoEmitidoOrdenar.emit(["desc",campoTabla]);
+    }else if(this.orden.substring(0,1) == "1"){
+      this.orden = "-1" + campoTabla;
+      this.eventoEmitidoOrdenar.emit(["sinOrden",campoTabla]);
     }
   }
-  enviarNotificacion(pelicula: Pelicula){
-     this.eventoEnviarPelicula.emit(pelicula);
+  seleccionarPelicula(pelicula: Pelicula){
+    this.eventoEmitidoSeleccionar.emit(pelicula);
+
   }
 }

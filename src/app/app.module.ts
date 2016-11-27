@@ -19,6 +19,6 @@ import { FormPeliculasComponent } from './form-peliculas/form-peliculas.componen
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent,FormPeliculasComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

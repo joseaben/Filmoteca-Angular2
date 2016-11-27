@@ -4,12 +4,10 @@ import{Pelicula} from '../model/pelicula'
 @Injectable()
 export class GestionFilmotecaService {
 
-  private arrayOriginal;
-  private arrayOrdenado;
+  private arrayOriginal: Pelicula[];
+  private arrayOrdenado: Pelicula[];
 
   constructor() {
-    this.arrayOriginal =  new Array<Pelicula>();
-    this.arrayOrdenado =  new Array<Pelicula>();
     this.cargaArrayTest();
   }
 
@@ -19,16 +17,27 @@ export class GestionFilmotecaService {
   getPelicula(id: number): Pelicula{
       return this.arrayOriginal[id];
   }
+
   addPelicula(pelicula: Pelicula){
-      //pelicula.setId = this.arrayOriginal.length;
+      pelicula.setId = this.arrayOriginal.length + 1;
       this.arrayOriginal.push(pelicula);
+      this.arrayOrdenado.push(pelicula);
   }
   updatePelicula(pelicula: Pelicula){
-      this.arrayOriginal[this.arrayOriginal.indexof(pelicula)] = pelicula;
+      this.arrayOriginal[(pelicula.getId) - 1] = pelicula;
+      for(let pos = 0; pos < this.arrayOrdenado.length;pos++){
+        if(this.arrayOrdenado[pos].getId == pelicula.getId){
+          this.arrayOrdenado[pos] = pelicula;
+          break;
+        }
+      }
+      
   }
-  deletePelicula(id: number){
-      this.arrayOriginal.splice(id,1);
+  deletePelicula(pelicula: Pelicula){
+      this.arrayOriginal.splice(this.arrayOriginal.indexOf(pelicula),1);
+       this.arrayOrdenado.splice(this.arrayOrdenado.indexOf(pelicula),1);
   }
+
   ordenar(orden: string,campo:string): Pelicula[]{
     if(orden == "asc"){
       this.arrayOrdenado.sort((pelicula1,pelicula2)=>{
@@ -46,15 +55,15 @@ export class GestionFilmotecaService {
     return this.arrayOrdenado;
   }
   private cargaArrayTest(){
-    this.arrayOriginal = [{title:"Los vengadores",director:"jose",year:"2012"},
-                      {title:"Averages 2",director:"jose",year:"2015"},
-                      {title:"Fast and furius",director:"jose",year:"2015"},
-                      {title:"Wonder Woman",director:"jose",year:"2017"}];
+    this.arrayOriginal = [new Pelicula(1,"Los vengadores","Jose","2012"),
+                          new Pelicula(2,"Averages 2", "Jose","2015"),
+                          new Pelicula(3,"Fast and furius", "Jose","2015"),
+                          new Pelicula(4,"Wonder Woman", "Jose","2017")];
 
-    this.arrayOrdenado = [{title:"Los vengadores",director:"jose",year:"2012"},
-                      {title:"Averages 2",director:"jose",year:"2015"},
-                      {title:"Fast and furius",director:"jose",year:"2015"},
-                      {title:"Wonder Woman",director:"jose",year:"2017"}];
+    this.arrayOrdenado = [new Pelicula(1,"Los vengadores","Jose","2012"),
+                          new Pelicula(2,"Averages 2", "Jose","2015"),
+                          new Pelicula(3,"Fast and furius", "Jose","2015"),
+                          new Pelicula(4,"Wonder Woman", "Jose","2017")];
   }
 
 

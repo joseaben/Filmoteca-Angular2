@@ -1,28 +1,29 @@
 <table>
   <thead>
     <tr>
+      
       <td (click)="ordenar('title')" >TITLE
-        <span *ngIf="campo =='title'">
-          <span *ngIf="ascendente"> Asc</span>
-          <span *ngIf="descendente"> Desc</span>
+        <span *ngIf="orden != '-1title'">
+          <span *ngIf="orden == '0title'"> Asc</span>
+          <span *ngIf="orden == '1title'"> Desc</span>
         </span>
       </td>
-      <td (click)="ordenar('director')">DIRECTOR
-        <span *ngIf="campo =='director'">
-          <span *ngIf="ascendente"> Asc</span>
-          <span *ngIf="descendente"> Desc</span>
+      <td (click)="ordenar('director')" >DIRECTOR
+        <span *ngIf="orden != '-1director'">
+          <span *ngIf="orden == '0director'"> Asc</span>
+          <span *ngIf="orden == '1director'"> Desc</span>
         </span>
       </td>
-      <td (click)="ordenar('year')">YEAR
-        <span *ngIf="campo =='year'">
-          <span *ngIf="ascendente"> Asc</span>
-          <span *ngIf="descendente"> Desc</span>
+      <td (click)="ordenar('year')" >YEAR
+        <span *ngIf="orden != '-1year'">
+          <span *ngIf="orden == '0year'"> Asc</span>
+          <span *ngIf="orden == '1year'"> Desc</span>
         </span>
       </td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pelicula of listaDePeliculas" (click)="enviarNotificacion(pelicula)">
+    <tr *ngFor="let pelicula of peliculas" (click)="seleccionarPelicula(pelicula)">
       <td>{{pelicula.title}}</td><td>{{pelicula.director}}</td><td>{{pelicula.year}}</td>
     </tr>
   </tbody>

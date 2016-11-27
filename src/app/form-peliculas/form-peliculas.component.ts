@@ -1,40 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter} from '@angular/core';
 import {Pelicula} from '../model/pelicula';
-import {GestionFilmotecaService} from '../services/gestion-filmoteca.service';
 
 @Component({
   selector: 'app-form-peliculas',
   templateUrl: './form-peliculas.component.html',
   styleUrls: ['./form-peliculas.component.css'],
-  providers:[GestionFilmotecaService]
+  outputs:['eventoAdd','eventoUpdate','eventoDelete'],
+  inputs: ['pelicula']
 })
 export class FormPeliculasComponent implements OnInit {
 
+  private eventoAdd: EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
+  private eventoUpdate: EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
+  private eventoDelete: EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
+
   private pelicula: Pelicula;
-  private enviarRenderizado: boolean;
 
-  constructor(private gestionFilmoteca: GestionFilmotecaService) {
-    this.pelicula = new Pelicula();
+  constructor() {}
+
+  ngOnInit() {}
+
+  addFilm(pelicula: Pelicula){
+    this.eventoAdd.emit(pelicula);
   }
-  addFilm(formulario: any){
-    this.gestionFilmoteca.addPelicula(this.pelicula);
-    this.enviarRenderizado = true;
+  updateFilm(pelicula: Pelicula){
+    this.eventoUpdate.emit(pelicula);
   }
-  updateFilm(formulario: any){
-    /*let peli: Pelicula = new Pelicula();
-    peli.setDirector="Jose";
-    peli.setTitle="hola";
-    peli.setYear="1002";
-
-    this.pelicula = peli;*/
+  deleteFilm(pelicula: Pelicula){
+    this.eventoDelete.emit(pelicula);
   }
-
-peliculaRecibida(pelicula: Pelicula){
-  this.pelicula = pelicula;
-}
-
-
-  ngOnInit() {
-  }
-
 }
