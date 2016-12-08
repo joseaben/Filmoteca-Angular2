@@ -1,20 +1,34 @@
 <form #form="ngForm">   
-  <label>Titulo :</label>
-  <input type="text" #title="ngModel" name="title" [(ngModel)]="pelicula.title" required/>
+  <div id="div_titulo" class="form-group">
+        <label class="col-lg-1 control-label" for="titulo">Titulo:</label>
+        <div class="col-lg-5">
+          <input type="text" #title="ngModel" name="title" [(ngModel)]="pelicula.title" class="form-control" required/>
+        </div>
+  </div>     
+  <br/>
   <br/>
   <div [hidden]="title.valid || title.pristine">Titulo requerido</div>
   <br/>
-  <label>Director :</label>
-  <input type="text" #director="ngModel" name="director" [(ngModel)]="pelicula.director" required/>
+  <div id="div_director" class="form-group">
+          <label class="col-lg-1 control-label" for="director">Director:</label>
+          <div class="col-lg-5">
+          <input type="text" #director="ngModel" name="director" [(ngModel)]="pelicula.director"  class="form-control" required/>
+           <span id="span_sinopsis"></span>
+        </div>
+  </div>
   <br/>
   <div [hidden]="director.valid || director.pristine">Director requerido</div>
   <br/>
-  <label>Año de creación :</label>
-  <input type="text" #year="ngModel" name="year" [(ngModel)]="pelicula.year" required/>
+  <div id="div_fecha" class="form-group">
+        <label class="col-lg-1 control-label" for="fecha">Año:</label>
+        <div class="col-lg-5">
+         <input type="text" #year="ngModel" name="year" [(ngModel)]="pelicula.year"  class="form-control" required/>
+       </div>
+  </div>
   <br/>
-  <div [hidden]="year.valid || year.pristine">Titulo requerido</div>
+  <div [hidden]="year.valid || year.pristine">Año requerido</div>
   <br/>
-  <button type="submit" [disabled]="form.invalid"(click)="addFilm(pelicula)">Añadir Pelicula</button>
-  <button type="submit" [disabled]="form.invalid"(click)="updateFilm(pelicula)">modificar Pelicula</button>
-  <button type="submit" [disabled]="form.invalid"(click)="deleteFilm(pelicula)">Borrar Pelicula</button>
+  <button type="submit"  class="btn btn-primary" [disabled]="form.invalid"(click)="addFilm(pelicula)">Añadir Pelicula</button>
+  <button type="submit" class="btn btn-warning" [disabled]="form.invalid"(click)="updateFilm(pelicula)">modificar Pelicula</button>
+  <button type="submit" class="btn btn-danger" [disabled]="form.invalid"(click)="deleteFilm(pelicula)">Borrar Pelicula</button>
 </form>

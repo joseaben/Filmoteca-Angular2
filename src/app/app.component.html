@@ -1,6 +1,10 @@
-<h1>
-  {{title}}
-</h1>
 
-<app-form-peliculas [pelicula]="peliculaSeleccionada" (eventoAdd)="addPelicula($event)" (eventoUpdate)="updatePelicula($event)" (eventoDelete)="deletePelicula($event)">Soy el form</app-form-peliculas>
-<app-tabla-datos [peliculas]="arrayPelis" (eventoEmitidoOrdenar)="ordenarTabla($event)" (eventoEmitidoSeleccionar)="cargarEnFormulario($event)">Soy la tabla</app-tabla-datos>
+<div class="container">
+  <h1>
+    {{title}}
+  </h1>
+  <br/>
+  <app-form-peliculas [pelicula]="peliculaSeleccionada" (eventoAdd)="addPelicula($event)" (eventoUpdate)="updatePelicula($event)" (eventoDelete)="deletePelicula($event)">Soy el form</app-form-peliculas>
+  <br/>
+  <app-tabla-datos [peliculas]="arrayPelis" (eventoEmitidoOrdenar)="ordenarTabla($event)" (eventoEmitidoSeleccionar)="cargarEnFormulario($event)">Soy la tabla</app-tabla-datos>
+</div>
